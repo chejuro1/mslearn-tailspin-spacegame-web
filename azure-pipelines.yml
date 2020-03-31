@@ -14,6 +14,19 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+- task: JavaToolInstaller@0
+    inputs:
+      versionSpec: "11"
+      jdkArchitectureOption: x64
+      jdkSourceOption: LocalDirectory
+      jdkFile: "/builds/openjdk-11.0.2_linux-x64_bin.tar.gz"
+      jdkDestinationDirectory: "/builds/binaries/externals"
+      cleanDestinationDirectory: true
+
+- task: NodeTool@0
+  inputs:
+    #versionSpec: '9.x' 
+    #checkLatest: false # Optional
 steps:
 - task: NuGetToolInstaller@1
 
@@ -32,3 +45,4 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
